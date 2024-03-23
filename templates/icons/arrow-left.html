@@ -1,0 +1,33 @@
+<style>
+    .floating-icon {
+        position: fixed;
+        top: 85px;
+        left: 22%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 50px;
+        cursor: pointer;
+    }
+
+    .floating-icon i {
+      font-size: 24px;
+    }
+
+    @media only screen and (max-width:991px){
+      .floating-icon{
+        left: 10%;
+      }
+    }
+    @media only screen and (max-width:575px){
+      .floating-icon{
+        left: 5px;
+      }
+    }
+</style>
+<div class="floating-icon">
+    <a class="gradient fw-bolder fs-3 m-lg-2" title="Voltar" href="{% url 'dashboard' %}">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+</div>

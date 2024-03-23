@@ -1,0 +1,87 @@
+{% load static %}
+<nav id="navmenu" class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img id="logo-lunch" src="{% static 'img/ilunch_logo.png' %}" alt="">
+    </a> 
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Lunch</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      
+      <div id="body-mobile" class="offcanvas-body" hidden>
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li>
+            <a class="dropdown-item" href="{% url 'edit' %}">Editar perfil</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{% url 'password_change' %}">Redefinir senha</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="body-desktop">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a
+            id="dropdown-expaded"
+            class="nav-link dropdown-toggle text-white"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <span id="user-span" class="user fw-bolder text-gray">
+              {% if request.user.is_authenticated %}
+                Olá, <span id="user-name">{{ request.user.first_name|title }} </span>
+                <i id="user-icon" class="fas fa-user"></i>
+              {% endif %}
+            </span>
+          </a>
+          <ul class="dropdown-menu">
+            {% if user.is_superuser %}
+              <li>
+                <a class="dropdown-item" href="{% url 'core:dashboard_admin' %}">Administrativo</a>
+              </li>
+            {% endif %}
+            <li>
+              <a class="dropdown-item" href="{% url 'edit' %}">Editar perfil</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'password_change' %}">Redefinir senha</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+</nav>
+
+
+<script>
+  var mobileMenuButton = document.getElementById("body-mobile");
+  var desktopMenuButton = document.getElementById("body-desktop");
+
+  if (window.innerWidth < 992) {
+    mobileMenuButton.removeAttribute('hidden');
+    desktopMenuButton.setAttribute('hidden', 'true');
+  } else {
+    mobileMenuButton.setAttribute('hidden', 'true');
+    desktopMenuButton.removeAttribute('hidden');
+  }
+
+</script>

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock head %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+  <div id="login" class="row p-3 d-flex justify-content-center align-items-center min-vh-100 text-white">
+    <!-- Left -->
+    <div class="col-lg-6 d-md-none d-sm-none d-lg-block left-box left-content">
+      <div class="featured-image d-flex justify-content-center  mb-3">
+        <img src="{% static 'img/abstract_572-removebg-preview.png' %}" class="img-fluid" style="width: 450px;">
+      </div>
+    </div>
+    <!-- Right -->
+    <div id="right-content" 
+      class="col-lg-6 col-md-12 col-sm-12 bg-white text-black right-box bg-orange-500 p-5">
+      <div class="row align-items-center">
+        <div class="header-text mb-2">
+          <h2 class="fw-bolder">Acesse</h2>
+          <p class="fw-medium">Com o usuário e senha para entrar</p>
+        </div>
+        <div class="login-form">
+          <form action="{% url 'login' %}" method="post">
+            <!-- {{form.as_p}} -->
+            {{ form|crispy }}
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}"> 
+            <div class="input-group d-flex justify-content-between align-content-center mt-1">
+              <div class="form-check m-0 p-0">
+                <input class="checkbox" type="checkbox" id="savePassword">
+                <label class="remember-password" for="savePassword">Lembrar senha</label>
+              </div>
+              <div>
+                <a class="forget-password" href="{% url 'password_reset' %}">Esqueci minha senha</a>
+              </div>
+            </div>
+            <div class="input-group d-flex justify-content-between align-content-center mt-1">
+              <div class="col-5">
+                <a class="btn btn-register w-100" href="{% url 'register' %}">Cadastrar</a>
+              </div>
+              <div class="col-5">
+                <button class="btn btn-login w-100" type="submit">Log-in</button>
+              </div>
+            </div>
+          </form>
+          <div class="social mt-4">
+            <h4 id="social-access">Ou acesse com</h4>
+            <div class="social-links input-group d-flex gap-4 justify-content-center align-content-center">
+              <a href="">
+                <img src="{% static 'icons/pesquisa.png' %}" alt="" width="25px">
+              </a>
+              <a href="">
+                <img src="{% static 'icons/facebook.png' %}" alt="" width="25px">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,68 @@
+body{
+    background: #ffffff !important;
+  }
+  
+  /* Tabela */
+  #tabela-listar {
+    background-color: white;
+    border-bottom: 1px solid #868585;
+  }
+  #tabela-listar th {
+    color: white;
+  }
+  table {
+    border-radius: 6px;
+    border-collapse: collapse;
+    width: 100% !important;
+  }
+  label {
+    color: white;
+  }
+  thead {
+    background-color: #ec8e00;
+  }
+  th,
+  td {
+    padding: 5px;
+    text-align: left;
+  }
+  
+  #tabela-listar tbody tr:nth-child(even) {
+      background-color: #ffffff; /* Cor para linhas pares */
+  }
+  
+  #tabela-listar tbody tr:nth-child(odd) {
+      background-color: #fdf7c1; /* Cor para linhas ímpares */
+  }
+  
+  #data:hover {
+    color: #022601;
+    background-color: #fdecc1;
+  }
+  .dataTables_wrapper,
+  .dataTables_length,
+  label {
+    color: black !important;
+  }
+  .page-link {
+    color: #f7f7f7;
+    border-color: #27272a;
+    background-color: #27272a;
+  }
+  .page-link:hover {
+    color: #fff;
+    background-color: #f39d1b;
+    border-color: #27272a;
+  }
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #ec8e00;
+    border-color: #27272a;
+  }
+  .page-item.disabled .page-link {
+    color: #fff;
+    border-color: #27272a;
+    background-color: #27272a;
+  }
+  

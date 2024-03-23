@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block head %}
+  <link href="{% static 'css/register.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block title %}Crie a sua conta aqui{% endblock %}
+
+{% block content %}
+  <div id="register-account" class="row p-3 d-flex justify-content-center align-items-center min-vh-100 text-white">
+    <div class="col-lg-6 d-md-none d-sm-none d-lg-block left-box left-content">
+      <div class="featured-image d-flex justify-content-center  mb-3">
+        <img src="{% static 'img/abstract_572-removebg-preview.png' %}" class="img-fluid" style="width: 450px;">
+      </div>
+    </div>
+    <div id="right-content" class="col-lg-6 col-md-12 col-sm-12 right-box bg-orange-500 p-4">
+      <h1 class="fw-bolder text-center">Crie a sua conta</h1>
+      <p class="fw-normal text-center mb-1">Por favor, inscreva-se usando o seguinte formulário</p>
+      <form id="form-register" method="post">
+        {{ user_form|crispy }}
+        {% csrf_token %}
+        <p><input id="btn-register" class="btn w-100" type="submit" value="Criar a minha conta"></p>
+      </form>
+    </div>
+  </div>
+{% endblock %}

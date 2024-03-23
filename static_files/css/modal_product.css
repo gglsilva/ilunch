@@ -1,0 +1,97 @@
+/* Button */
+#btn-confirm{
+    border: #EC8E00;
+}
+#btn-confirm:hover{
+    background-color: #cc7e0a;
+}
+.pri-title {
+    color: black;
+    font-weight: 600;
+    width: 100%;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.product-select {
+    display: flex;
+    align-items: center;
+    margin: .5em;
+    font-size: 18px;
+    font-weight: 600;
+}
+.product-select input {
+    width: 18px;
+    height: 18px;
+    margin-right: .5em;
+}
+.product-item {
+    font-size: 16px;
+    font-weight: 400;
+}
+/* Confirm order */
+#confirm-section{
+    flex-direction: column;
+    padding: 0 15px .5em 0;
+}
+.observacao {
+    margin: .5em;
+    display: flex;
+    align-items: flex-start;
+    font-size: 18px;
+    font-weight: 600;
+}
+.observacao label {
+    width: 6vw;
+}
+.client {
+    margin: .5em .5em 2em .5em;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+.client label{
+    width: 6vw; 
+}
+#select-client{
+    width: 420px;
+    height: 35px;
+}
+
+.coluna {
+    float: left;
+    width: 33.33%; /* Define a largura da coluna, ajuste conforme necessário */
+    box-sizing: border-box;
+    padding: 0 15px; /* Adicione margem interna se necessário */
+}
+
+/* Limpa o float */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#select-profile{
+    padding: 8px 8px 8px 2px;
+    margin-left: 10px;
+    width: 30%;
+    border-radius:  6px;
+}
+
+
+@media only screen and (max-width:575px){
+    .product-select {
+        align-items: start;
+    }
+    .product-select input {
+        margin-top:5px;
+        width: 24px;
+        height: 24px;
+    }
+    .coluna{
+        width: 50%;
+    }
+    
+}

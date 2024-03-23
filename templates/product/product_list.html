@@ -1,0 +1,64 @@
+{% csrf_token %}
+<section class="product-section">
+    <div class="opcao">
+        <h3 class="pri-title">Opcões*</h3>
+        <div class="row">
+            {% for opcao in opcoes %}
+            <div class="coluna">
+                <!-- Renderize os dados na coluna atual -->
+                <div class="product-select">
+                    <input 
+                        class="checkbox-{{ opcao.id }}" 
+                        type="checkbox" 
+                        id="checkbox-{{ opcao.id }}"
+                        value="{{ opcao.id }}"
+                        {% if opcao.name in last_order.get_product_for_order %} checked {% endif %}
+                    >
+                    <label class="product-item" for="checkbox-{{ opcao.id }}">{{ opcao.name }}</label>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="product-section">
+    <div class="acompanhamento">
+        <h3 class="pri-title">Acompanhamentos*</h3>
+        <div class="row">
+            {% for acompanhamento in acompanhamentos %}
+                <div class="coluna">
+                    <!-- Renderize os dados na coluna atual -->
+                    <div class="product-select">
+                        <input 
+                            class="checkbox-{{ acompanhamento.id }}"
+                            id="checkbox-{{ acompanhamento.id }}"
+                            type="checkbox" 
+                            value="{{ acompanhamento.id }}"
+                            {% if acompanhamento.name in last_order.get_product_for_order %} checked {% endif %}
+                        >
+                        <label class="product-item" for="checkbox-{{ acompanhamento.id }}">{{ acompanhamento.name }}</label>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section id="confirm-section">
+    <div>
+       <h3 class="pri-title">Observação</h3>
+        <div class="observacao">
+            <textarea id="msg" name="msg" rows="3" cols="35">{% if note %}{{ note }}{% endif %}</textarea>
+        </div> 
+    </div>
+    {% if user.is_superuser %}
+    <div id="select-client-admin">
+        <label class="fw-bolder fs-5 text-uppercase" for="">Cliente: </label>
+        <select name="" id="select-profile">
+            {% for profile in profiles %}
+                <option value="{{ profile.user }}">{{ profile }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {% endif %}
+</section>
+<span id="order-id" data-order-id="{{ last_order.id }}" hidden></span>

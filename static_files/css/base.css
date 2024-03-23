@@ -1,0 +1,118 @@
+.text-pri{
+    color: #e4e3e3;
+}
+.text-gray{
+    color: #919191;
+}
+/* backgrounds */
+.bg-black-900 {
+    background-color:#0f172a;
+}
+.bg-black-700{
+    background-color:#334155;
+}
+.bg-black-300{
+    background-color:#474747;
+}
+.bg-orange-200 {
+    background-color: #FDECC1;
+}
+.bg-orange-500 {
+    background-color: #EC8E00;
+}
+.bg-gray-400 {
+    background-color: #f5f5f5;
+}
+.bg-orange-800 {
+    background-color: #C6401D;
+}
+.bg-zinc-800 {
+    background-color: #27272a;
+}
+
+.gradient {
+    background: linear-gradient(to right, rgb(252, 74, 26), rgb(247, 183, 51));
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* Adicionado: */
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-zinc-800 {
+    background-color: #27272a;
+}
+/* Nav Menu */
+/* logo */
+/* #navmenu{
+    border-bottom: 1px #cc7e0a solid;
+} */
+#logo-lunch{
+    width: 60px;
+    margin-right: 0.5em;
+}
+
+#user-icon{
+    background-color: #EC8E00;
+    color: white;
+    border-radius: 50%;
+    border: 2px white solid;
+    padding:0.5em;
+}
+
+#user-name{
+    color: #EC8E00;
+}
+
+/* button */
+.btn-pri-custom{
+    color: white;
+    border: #EC8E00 1px solid;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: #EC8E00;
+    text-decoration: none;
+}
+.btn-pri-custom:hover{
+    color: white;   
+    background-color: #cc7e0a;
+}
+
+.btn-sec-custom{
+    color: white;
+    border: #334155 1px solid;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: #334155;
+    text-decoration: none;
+}
+.btn-sec-custom:hover{
+    color: white;   
+    background-color: #27272a;
+}
+
+.offcanvas-body ul{
+    gap: 15px;
+}
+.offcanvas-body li{
+    padding: 10px;
+}
+
+.offcanvas-body li:hover{
+    background-color: white;
+    color: black;   
+}
+
+@media only screen and (max-width:834px){
+    #user-span{
+        display: none;
+    }
+    .dropdown-menu{
+        background-color: #27272a;
+    }
+    .dropdown-item{
+        color: #e4e3e3;
+    }   
+    #dropdown-expaded {
+        display: none;
+    }
+}

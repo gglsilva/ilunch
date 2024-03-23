@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit your account{% endblock %}
+
+{% block content %}
+  <style>
+    .edit-profile p{
+      color: #868585;
+    } 
+    #div_id_first_name,
+    #div_id_last_name,
+    #div_id_email,
+    #div_id_date_of_birth,
+    #div_id_photo{
+      margin-bottom: 4px !important;
+    }
+    .edit-profile input{
+      background-color: #e7e7e7fd;
+      height: 35px;
+      padding: 2px 8px;
+    }
+    
+    #edit-input{
+      text-align: center;
+      color: white;
+      border: #EC8E00 1px solid;
+      padding: 5px 10px;
+      border-radius: 6px;
+      background-color: #EC8E00;
+      text-decoration: none;
+      width: 10vw;
+    }
+    #edit-input:hover{
+      color: white;   
+      background-color: #cc7e0a;
+    }
+    /* Esconde o input */
+    input[type='file'] {
+      display: none
+    }
+
+    /* Aparência que terá o seletor de arquivo */
+    #div_id_photo label {
+      background-color: #334155;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      margin: 10px 10px 10px 0;
+      padding: 6px 20px
+    }
+
+    @media only screen and (max-width:575px){
+      #edit-content{
+        margin-top: 10%;
+        padding: 20px;
+      }
+      #edit-input{
+        width: 90vw;
+      }
+    }
+
+  </style>
+
+  <div class="edit-profile mt-4">
+    <div class="row justify-content-center">
+      {% include 'icons/arrow-left.html' %}
+      <div id="edit-content" class="col-lg-6 col-md-8 col-sm-10">
+        <div class="d-flex flex-column" style="margin: 0 auto;">
+          <h2 class="fw-bolder">Edite sua conta</h2>
+          <p class="fs-6 mb-1">Você pode editar sua conta usando o seguinte formulário:</p>
+          <form method="post" enctype="multipart/form-data">
+            {{ user_form|crispy }}
+            {{ profile_form|crispy }}
+            {% csrf_token %}
+            <p><input id="edit-input" class="mt-2" type="submit"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}
