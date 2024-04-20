@@ -42,11 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap5',
+    'import_export',
     
     # My APPS
     'account',
     'core',
-    'menu',
+    'restaurant',
     'order',
     'product',
 ]
@@ -149,7 +150,7 @@ STATIC_ROOT = os.path.join('assets')  # project/assets
 
 # REDIRECT
 LOGIN_REDIRECT_URL = 'dashboard'
-LOGIN_URL = 'login'
+LOGIN_URL = 'account/login'
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'login'
 
@@ -167,3 +168,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # FORMS TEMPLATES
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', default=True)
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')

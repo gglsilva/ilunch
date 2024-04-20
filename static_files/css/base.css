@@ -43,9 +43,9 @@
 }
 /* Nav Menu */
 /* logo */
-/* #navmenu{
-    border-bottom: 1px #cc7e0a solid;
-} */
+#navmenu{
+    border-bottom: 1.5px #c7c7c7 solid;
+}
 #logo-lunch{
     width: 60px;
     margin-right: 0.5em;

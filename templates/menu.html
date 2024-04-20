@@ -49,11 +49,11 @@
             </span>
           </a>
           <ul class="dropdown-menu">
-            {% if user.is_superuser %}
+            {% comment %} {% if user.is_superuser %}
               <li>
                 <a class="dropdown-item" href="{% url 'core:dashboard_admin' %}">Administrativo</a>
               </li>
-            {% endif %}
+            {% endif %} {% endcomment %}
             <li>
               <a class="dropdown-item" href="{% url 'edit' %}">Editar perfil</a>
             </li>
@@ -67,7 +67,6 @@
         </li>
       </ul>
     </div>
-    
   </div>
 </nav>
 

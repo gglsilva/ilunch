@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product
+from .models import Category, Product, Menu
 
 
 @admin.register(Category)
@@ -15,3 +15,5 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ['price', 'available']
     search_fields = ['name', 'created', 'price']
     prepopulated_fields = {'slug': ('name',)}
+    
+admin.site.register(Menu)

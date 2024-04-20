@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from restaurant.models import Restaurant
+
 
 class Category(models.Model):
     name = models.CharField(
@@ -29,6 +31,11 @@ class Category(models.Model):
     
     
 class Product(models.Model):
+    restaurant = models.ForeignKey(
+        Restaurant, 
+        on_delete=models.CASCADE, 
+        related_name='produtos'
+    )
     category = models.ForeignKey(
         Category,
         related_name='products',
@@ -60,6 +67,12 @@ class Product(models.Model):
         blank=True,
         null=True
     )
+    products = models.ManyToManyField(
+        'self', 
+        blank=True, 
+        symmetrical=False, 
+        related_name='combos'
+    )
     available = models.BooleanField(
         'Ativo',
         default=True
@@ -83,3 +96,25 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('shop:product_detail',
                        args=[self.id, self.slug])
+
+
+class Menu(models.Model):
+    name = models.CharField(
+        verbose_name='Nome',
+        max_length=60,
+        blank=False,
+        null=False,
+    )
+    restaurant = models.ForeignKey(
+        Restaurant,
+        on_delete=models.CASCADE, 
+        related_name='menus'
+    )
+    product = models.ManyToManyField(
+        Product, 
+        verbose_name="Produtos",
+        related_name='menus',
+    )
+    
+    def __str__(self):
+        return self.name

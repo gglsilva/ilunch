@@ -1,6 +1,8 @@
 from account.models import Profile
 from order.models import Order, OrderItem
 from product.models import Product, Category
+from restaurant.models import Restaurant
+from django.utils import timezone
 from django.http import JsonResponse, HttpResponse
 from django.template.loader import render_to_string
 from datetime import date
@@ -37,9 +39,13 @@ def action_fetch_create_order(request):
 
         return JsonResponse({'response': 'success'})
     else:          
-
-        print("Aquii 2")
-
+        # Verifica se o restaurante está aceitando pedidos no momento
+        restaurant = Restaurant.objects.get(is_active=True)
+        current_time = timezone.now().time()
+        
+        if restaurant.max_time_order and current_time > restaurant.max_time_order:
+            return JsonResponse({'response': 'error', 'message': 'Os pedidos foram encerrados. Por favor, entre em contato com o restaurante.'}, status=400)
+        
         order = Order.objects.create(client=profile, note=mensagem)
         for item in produtos:
             produto = Product.objects.get(id=int(item))
