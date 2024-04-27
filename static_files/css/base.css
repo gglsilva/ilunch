@@ -47,8 +47,12 @@
     border-bottom: 1.5px #c7c7c7 solid;
 }
 #logo-lunch{
-    width: 60px;
+    width: 40px;
     margin-right: 0.5em;
+}
+.navbar-brand span{
+    color: #fa7655;
+    font-weight: bolder;
 }
 
 #user-icon{

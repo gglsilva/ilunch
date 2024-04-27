@@ -1,0 +1,56 @@
+<html lang="pt">
+<head>
+    <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #ffffff ;
+        }
+        #tabela-listar {
+            background-color: white;
+            border-bottom: 1px solid #868585;
+        }
+        label {
+            color: white;
+        }
+        thead {
+            background-color: #ec8e00;
+        }
+        th, 
+        td {
+            padding: 5px;
+            text-align: left;
+        }
+        #tabela-listar tbody tr:nth-child(even) {
+            background-color: #ffffff; /* Cor para linhas pares */
+        }
+
+        #tabela-listar tbody tr:nth-child(odd) {
+            background-color: #fdf7c1; /* Cor para linhas ímpares */
+        }
+    </style>
+</head>
+<body>
+    <h2>Pedidos do Dia {{ today|date:"d/m/Y" }} - Total: {{ orders|length}} </h2>
+    <hr>
+    <table id="tabela-listar">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Produtos</th>
+                <th>Observação</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for order in orders %}
+            <tr id="data">
+                <td>{{ order.client }}</td>
+                <td>{{ order.get_product_for_order }}</td>
+                <td>{{ order.note }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
