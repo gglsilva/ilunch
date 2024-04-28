@@ -58,8 +58,12 @@ def action_fetch_create_order(request):
 
 def order_edit(request):
     user = request.user
+    today = date.today()
 
-    last_order = Order.objects.filter(client=user.profile).order_by('-id').first()
+    last_order = Order.objects.filter(
+        client=user.profile,
+        created=today
+    ).order_by('-id').first()
     
     if last_order is None:
         response = {
