@@ -74,7 +74,7 @@ ROOT_URLCONF = 'ilunch.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -154,7 +154,9 @@ USE_TZ = True
 # ]
 # STATIC_ROOT = os.path.join('assets')  # project/assets
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # REDIRECT
 LOGIN_REDIRECT_URL = 'dashboard'
