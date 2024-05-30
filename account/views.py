@@ -12,7 +12,7 @@ from .forms import LoginForm, UserRegistrationForm, \
                    UserEditForm, ProfileEditForm
 from django.template.loader import render_to_string
 from django.http import JsonResponse
-from order.forms import DateRangeForm
+# from order.forms import DateRangeForm
 
 
 def user_login(request):
