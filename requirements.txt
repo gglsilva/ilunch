@@ -1,5 +1,5 @@
 asgiref==3.7.2
-beautifulsoup4==4.12.3
+# beautifulsoup4==4.12.3
 Brotli==1.1.0
 cffi==1.16.0
 click==8.1.7
@@ -7,11 +7,11 @@ crispy-bootstrap5==2024.2
 cssselect2==0.7.0
 defusedxml==0.7.1
 diff-match-patch==20230430
-dj-database-url==2.1.0
+# dj-database-url==2.1.0
 Django==4.2
 django-bootstrap-v5==1.0.11
 django-crispy-forms==2.1
-django-decouple==2.1
+# django-decouple==2.1
 django-import-export==3.3.8
 et-xmlfile==1.1.0
 fonttools==4.50.0

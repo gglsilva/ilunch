@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
-import dj_database_url
-from decouple import config
+# import dj_database_url
+# from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +28,7 @@ SECRET_KEY='django-insecure-41*x$9g&i6-qwz3c_k-+yp-cenummtj(cs0!6661c8!7c^6e6v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get('DEBUG', default=True)
-DEBUG = True
+DEBUG = False
 
 
 

@@ -25,6 +25,10 @@ class Restaurant(models.Model):
         blank=True,
         null=True,
     )
+    open_orders = models.BooleanField(
+        verbose_name='Aberto para pedidos',
+        default=False
+    )
     is_active = models.BooleanField(
         verbose_name='Restaurante esta ativo',
         default=False
