@@ -28,7 +28,7 @@ SECRET_KEY='django-insecure-41*x$9g&i6-qwz3c_k-+yp-cenummtj(cs0!6661c8!7c^6e6v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get('DEBUG', default=True)
-DEBUG = False
+DEBUG = True
 
 
 
@@ -154,9 +154,7 @@ USE_TZ = True
 # ]
 # STATIC_ROOT = os.path.join('assets')  # project/assets
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # REDIRECT
 LOGIN_REDIRECT_URL = 'dashboard'

@@ -12,6 +12,7 @@ from .forms import LoginForm, UserRegistrationForm, \
                    UserEditForm, ProfileEditForm
 from django.template.loader import render_to_string
 from django.http import JsonResponse
+from order.forms import DateRangeForm
 
 
 def user_login(request):
@@ -39,10 +40,12 @@ def user_login(request):
 @login_required
 def dashboard(request):
     template_name = 'account/dashboard.html'
+    formDataRange = DateRangeForm()
     orders = Order.objects.filter(client=request.user.profile)
 
     context = {
         'orders': orders,
+        'form': formDataRange,
         'section': dashboard,
     }
 

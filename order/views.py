@@ -5,6 +5,8 @@ from restaurant.models import Restaurant
 from django.utils import timezone
 from django.http import JsonResponse, HttpResponse
 from django.template.loader import render_to_string
+from .forms import DateRangeForm
+from django.db.models import Count, Sum
 from datetime import date
 from weasyprint import HTML
 from django.core.files.storage import FileSystemStorage
@@ -121,3 +123,20 @@ def print_report_orders(request):
         response = HttpResponse(pdf, content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="pedidos.pdf"'
     return response
+
+
+# def print_weekly_report(request):
+#     if request.method == 'POST':
+#         form = DateRangeForm(request.POST)
+#         if form.is_valid():
+#             start_date = form.cleaned_data['start_date']
+#             end_date = form.cleaned_data['end_date']
+
+#             orders = Order.objects.filter(created__range=[start_date, end_date])
+#             daily_orders = orders.values('created').annotate(total_orders=Count('id'))
+            
+#             total_value = orders.aggregate(total_value=Sum('id'))['total_value']  # Replace 'id' with the actual field for order value if available
+
+#     else:
+#         form = DateRangeForm()
+            
