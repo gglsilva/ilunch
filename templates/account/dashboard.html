@@ -72,32 +72,29 @@
         {% if user.is_superuser %}
         <button
           type="button"
-          class="btn btn-sec-custom"
-          id="print-order"
-          title="Imprimir Pedidos"
-          onclick="printOrderDay()"
+          class="btn btn-sec-custom print-order"
+          title="Imprimir Pedidos do dia"
+          onclick="printOrderDay(this)"
           data-content-url="{% url 'order:print_report_orders' %}"
         >
           <i id="icon-download" class="far fa-file-pdf"></i>
         </button>
 
-        {% comment %} <button
+        <button
           type="button"
-          class="btn btn-sec-custom"
-          id="print-order"
+          class="btn btn-sec-custom print-order"
           title="Imprimir Pedidos da semana"
-          onclick="printOrderDay()"
-          style="background-color: #d4d4d4;"
-          data-content-url="{% url 'order:print_report_week' %}"
+          onclick="printOrderDay(this)"
+          data-content-url="{% url 'order:print_weekly_report' %}"
         >
-          <i id="icon-download" class="far fa-file-pdf"></i>
-        </button> {% endcomment %}
+          <i class="fa-solid fa-calendar-week"></i>
+        </button>
         {% endif %}
         <button
           id="edit-order"
           type="button"
           class="btn btn-sec-custom"
-          title="Editar Pedido"
+          title="Editar Pedido do dia"
           onclick="handleEditOrder()"
           data-content-url="{% url 'order:order_edit' %}"
         >
@@ -307,9 +304,10 @@ function handleEditOrder() {
 ///////
 
 /////// Imprimi pedidos do dia atual
-function printOrderDay() {
-  const button = document.getElementById("print-order");
-  const contentUrl = button.getAttribute("data-content-url");
+function printOrderDay(button) {
+  let contentUrl = button.getAttribute("data-content-url");
+
+  console.log('print url', contentUrl);
 
   fetch(contentUrl)
     .then((response) => response.blob())
@@ -325,6 +323,7 @@ function printOrderDay() {
       console.error("Ocorreu um erro ao carregar o conteúdo do pdf:", error);
     });
 }
+
   
 
   function getProductSelect() {

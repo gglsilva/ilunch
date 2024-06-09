@@ -5,9 +5,8 @@ from restaurant.models import Restaurant
 from django.utils import timezone
 from django.http import JsonResponse, HttpResponse
 from django.template.loader import render_to_string
-from .forms import DateRangeForm
 from django.db.models import Count, Sum
-from datetime import date
+from datetime import date, timedelta
 from weasyprint import HTML
 from django.core.files.storage import FileSystemStorage
 
@@ -125,18 +124,49 @@ def print_report_orders(request):
     return response
 
 
-# def print_weekly_report(request):
-#     if request.method == 'POST':
-#         form = DateRangeForm(request.POST)
-#         if form.is_valid():
-#             start_date = form.cleaned_data['start_date']
-#             end_date = form.cleaned_data['end_date']
+def print_weekly_report(request):
+    # Calcula a data de uma semana atrás
+    one_week_ago = date.today() - timedelta(days=7)
+    # Filtra os pedidos criados na última semana, de segunda a sexta
+    orders = Order.objects.filter(created__gte=one_week_ago, created__week_day__range=(2, 6))
 
-#             orders = Order.objects.filter(created__range=[start_date, end_date])
-#             daily_orders = orders.values('created').annotate(total_orders=Count('id'))
-            
-#             total_value = orders.aggregate(total_value=Sum('id'))['total_value']  # Replace 'id' with the actual field for order value if available
+    # Conta a quantidade de pedidos por dia da semana
+    order_counts = {}
+    total_orders = 0
+    for order in orders:
+        day = order.created
+        if day in order_counts:
+            order_counts[day]['count'] += 1
+        else:
+            order_counts[day] = {
+                'day_name': day.strftime('%A'),
+                'count': 1
+            }
+        total_orders += 1
 
-#     else:
-#         form = DateRangeForm()
+    # Ordena por data
+    ordered_counts = sorted(order_counts.items())
+
+    # Gera o HTML a partir do template
+    html_string = render_to_string(
+        'order/weekly_report.html',
+        {
+            'order_counts': ordered_counts,
+            'total_orders': total_orders,
+            'today': date.today(),
+        }
+    )
+
+    # Converte o HTML para PDF
+    html = HTML(string=html_string)
+    pdf_path = '/tmp/pedidos_semana.pdf'
+    html.write_pdf(target=pdf_path)
+
+    # Salva o PDF no sistema de arquivos e prepara a resposta HTTP
+    fs = FileSystemStorage('/tmp')
+    with fs.open('pedidos_semana.pdf') as pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="pedidos_semana.pdf"'
+    
+    return response
             
