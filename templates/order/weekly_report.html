@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Pedidos</title>
+    <style>
+        /* Estilos para formatar o PDF */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Relatório de Pedidos - Última Semana</h1>
+    <p>Data: {{ today }}</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Dia da Semana</th>
+                <th>Quantidade de Pedidos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for date, details in order_counts %}
+            <tr>
+                <td>{{ date }}</td>
+                <td>{{ details.day_name }}</td>
+                <td>{{ details.count }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2"><strong>Total de Pedidos</strong></td>
+                <td><strong>{{ total_orders }}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
