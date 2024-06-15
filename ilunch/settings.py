@@ -148,13 +148,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static_files')  # project/core/static_files
-# ]
-# STATIC_ROOT = os.path.join('assets')  # project/assets
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Diretórios adicionais para procurar arquivos estáticos
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# URL para usar ao referenciar arquivos estáticos localizados em STATIC_ROOT
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # REDIRECT
 LOGIN_REDIRECT_URL = 'dashboard'
