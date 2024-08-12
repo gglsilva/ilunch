@@ -21,7 +21,7 @@ def total_mean_order(user):
 @register.simple_tag
 def max_time_order():
     max_time = Restaurant.objects.filter(is_active=True).first()
-    return max_time.max_time_order.strftime('%H:%M')
+    return max_time.max_time_order.strftime('%H:%M') if max_time else ""
     
 
 @register.simple_tag
