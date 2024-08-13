@@ -1,0 +1,64 @@
+category,name,slug,image,description,price,available,created,updated
+Opções,Almôndegas cremosas,almondegas-cremosas,,,,False,2023-10-13 12:02:28.821096+00:00,2023-10-16 11:44:40.344869+00:00
+Acompanhamentos,Arroz,arroz,,,,False,2024-07-24 12:07:36.696958+00:00,2024-08-09 12:32:27.296893+00:00
+Acompanhamentos,Arroz a grega,arroz-a-grega,,,,False,2024-02-08 12:07:46.420580+00:00,2024-07-15 12:18:22.161190+00:00
+Acompanhamentos,Arroz branco,arroz-branco,,,,False,2023-10-09 11:53:43.390983+00:00,2024-07-24 12:07:43.800482+00:00
+Acompanhamentos,arroz temperado,arroz-temperado,,,,False,2024-03-26 12:38:08.250376+00:00,2024-03-27 12:00:15.577629+00:00
+Opções,Assado de Panela,assado-de-panela,,,,False,2023-10-09 11:52:38.133348+00:00,2024-08-09 12:32:09.633044+00:00
+Opções,Assado de porco,assado-de-porco,,,,False,2024-07-08 12:38:36.485902+00:00,2024-08-02 12:22:29.018353+00:00
+Acompanhamentos,Baião,baiao,,,,True,2023-10-10 11:50:20.864882+00:00,2024-08-09 12:32:27.299612+00:00
+Opções,Bife acebolado,bife-acebolado,,,,False,2023-11-09 12:23:57.608025+00:00,2024-07-26 12:54:56.633565+00:00
+Opções,Bife ao molho,bife-ao-molho,,,,False,2023-12-07 12:15:27.027557+00:00,2024-08-06 12:58:58.047154+00:00
+Opções,Bife ao molho madeira,bife-ao-molho-madeira,,,,False,2023-10-10 11:50:42.455204+00:00,2024-07-10 12:26:36.636708+00:00
+Opções,Bife com purê,bife-com-pure,,,,False,2023-10-10 11:51:23.077092+00:00,2024-04-18 12:05:18.126970+00:00
+Opções,Carne ao molho,carne-ao-molho,,,,False,2024-07-26 12:55:41.514702+00:00,2024-07-29 13:08:22.958963+00:00
+Opções,Carne com verduras,carne-com-verduras,,,,False,2024-04-11 11:33:50.522394+00:00,2024-06-14 11:57:30.252050+00:00
+Opções,Carne cozida com batata,carne-cozida-com-batata,,,,False,2024-02-26 13:17:46.536366+00:00,2024-02-27 13:07:08.824178+00:00
+Opções,Carne de sol acebolada,carne-de-sol-acebolada,,,,False,2023-10-27 11:57:32.302151+00:00,2024-07-31 12:03:22.221368+00:00
+Opções,Carneiro ao leite de coco,carneiro-ao-leite-de-coco,,,,False,2023-11-28 12:04:32.186233+00:00,2024-07-18 13:12:03.924480+00:00
+Opções,Carneiro ao molho,carneiro-ao-molho,,,,False,2023-10-11 12:06:28.389351+00:00,2024-07-31 12:03:22.223375+00:00
+Opções,Churrasco misto,churrasco-misto,,,,True,2023-11-08 12:26:56.640308+00:00,2024-08-09 12:32:09.640116+00:00
+Acompanhamentos,Completo,completo,,,,False,2023-11-08 12:30:15.272684+00:00,2024-06-03 12:24:59.314584+00:00
+Opções,Cozidão,cozidao,,,,True,2023-10-09 11:52:53.816259+00:00,2024-08-09 12:32:09.642056+00:00
+Acompanhamentos,Farofa,farofa,,,,True,2023-10-09 11:54:24.241297+00:00,2024-03-22 12:40:40.913202+00:00
+Acompanhamentos,Feijão,feijao,,,,False,2023-10-09 11:53:59.824529+00:00,2024-08-09 12:32:47.268997+00:00
+Acompanhamentos,Feijão preto,feijao-preto,,,,False,2023-10-16 11:48:02.797924+00:00,2024-01-18 11:59:08.851942+00:00
+Opções,Feijoada,feijoada,,,,False,2023-10-13 12:02:54.650922+00:00,2024-08-05 12:30:17.939220+00:00
+Opções,Fígado acebolado,figado-acebolado,,,,True,2023-10-09 11:53:11.826529+00:00,2024-08-09 12:32:09.643756+00:00
+Opções,Frango ao molho,frango-ao-molho,,,,False,2023-12-26 13:14:55.908245+00:00,2024-08-09 12:32:09.645183+00:00
+Opções,Frango assado no forno,frango-assado-no-forno,,,,False,2023-10-11 12:05:50.168786+00:00,2024-08-07 12:44:43.669844+00:00
+Opções,Frango cremoso,frango-cremoso,,,,False,2023-10-27 11:57:10.011490+00:00,2023-10-30 12:24:02.155463+00:00
+Opções,Frango frito,frango-frito,,,,False,2023-11-09 12:25:22.901529+00:00,2024-04-03 11:54:06.743525+00:00
+Opções,Galinha ao molho,galinha-ao-molho,,,,False,2023-10-09 11:53:28.879546+00:00,2024-08-08 13:00:34.713774+00:00
+Opções,Galinha ao molho branco,galinha-ao-molho-branco,,,,False,2024-08-01 12:22:45.484405+00:00,2024-08-02 12:22:55.254216+00:00
+Opções,Galinha ao molho pardo,galinha-ao-molho-pardo,,,,False,2024-02-01 12:26:52.550412+00:00,2024-07-09 12:27:05.696473+00:00
+Opções,Lasanha,lasanha,,,,False,2023-11-09 12:26:39.326882+00:00,2023-12-13 12:21:27.337869+00:00
+Opções,Lasanha de calabresa,lasanha-de-calabresa,,,,False,2023-11-29 12:17:23.918515+00:00,2024-04-17 11:48:06.937409+00:00
+Opções,Lasanha de camarão,lasanha-de-camarao,,,,False,2024-04-26 13:22:22.085448+00:00,2024-04-29 12:57:37.516080+00:00
+Opções,Lasanha de carne,lasanha-de-carne,,,,False,2023-12-20 12:04:39.181812+00:00,2024-07-04 11:58:15.927980+00:00
+Opções,Lasanha de frango,lasanha-de-frango,,,,False,2023-10-13 12:01:59.216642+00:00,2024-08-08 13:00:34.715322+00:00
+Acompanhamentos,Macarrão,macarrao,,,,True,2023-10-09 11:54:13.539162+00:00,2024-03-22 12:40:40.915904+00:00
+Opções,Mão de vaca,mao-de-vaca,,,,False,2024-06-19 12:15:05.556527+00:00,2024-06-20 12:47:09.402726+00:00
+Acompanhamentos,Maria Isabel,maria-isabel,,,,False,2023-10-11 12:07:26.892212+00:00,2024-02-02 13:10:12.463469+00:00
+Opções,Panelada,panelada,,,,False,2023-10-30 12:20:30.522011+00:00,2024-07-16 12:00:06.592850+00:00
+Opções,Panquecas de frango,panquecas-de-frango,,,,False,2023-11-30 12:47:34.000271+00:00,2023-12-01 12:15:11.153516+00:00
+Opções,Peixe ao molho de camarão,peixe-ao-molho-de-camarao,,,,False,2024-02-28 12:56:44.024406+00:00,2024-08-09 12:32:09.646510+00:00
+Opções,Peixe Frito,peixe-frito,,,,False,2023-10-10 11:51:37.340789+00:00,2024-08-08 13:00:34.718536+00:00
+Opções,Picadinho de carne,picadinho-de-carne,,,,False,2023-10-20 12:55:07.787887+00:00,2024-06-05 12:25:22.289328+00:00
+Opções,Porco ao molho,porco-ao-molho,,,,False,2023-10-10 11:51:00.248357+00:00,2024-07-30 13:13:07.513351+00:00
+Opções,Porco assado na panela,porco-assado-na-panela,,,,False,2023-10-24 13:03:48.623656+00:00,2024-07-22 12:57:52.791490+00:00
+Opções,Porco Assado no forno,porco-assado-no-forno,,,,False,2023-10-17 12:12:15.613070+00:00,2023-10-18 12:46:19.660327+00:00
+Opções,Porco cozido,porco-cozido,,,,False,2023-12-05 12:16:00.390566+00:00,2023-12-06 13:04:55.015270+00:00
+Acompanhamentos,Purê,pure,,,,False,2023-11-08 12:28:02.717784+00:00,2023-12-22 12:17:47.517561+00:00
+Acompanhamentos,Salada,salada-nao-especificada-no-menu,,Salada Surpresa,,True,2024-03-21 12:58:09.250440+00:00,2024-07-11 12:36:27.403694+00:00
+Acompanhamentos,Salada de maionese,salada-de-maionese,,,,False,2023-10-10 11:52:54.605497+00:00,2024-04-17 11:47:16.506174+00:00
+Acompanhamentos,Salada de repolho,salada-de-repolho,,,,False,2024-04-09 11:41:30.362418+00:00,2024-05-23 12:49:05.287162+00:00
+Acompanhamentos,Salada de repolho cozida,salada-de-repolho-cozida,,,,False,2024-02-19 12:25:39.183035+00:00,2024-04-16 12:18:17.074981+00:00
+Acompanhamentos,Salada Tropical,salada-tropical,,,,False,2024-04-11 11:32:16.985661+00:00,2024-04-12 12:21:20.276951+00:00
+Acompanhamentos,Salada verde,salada-verde,,,,False,2023-10-09 11:54:39.402784+00:00,2024-07-11 12:36:27.406767+00:00
+Opções,Sarapatel,sarapatel,,,,False,2023-10-18 12:46:55.367052+00:00,2024-08-09 12:32:09.647916+00:00
+Opções,Sarapatel de carneiro,sarapatel-de-carneiro,,,,False,2024-06-18 12:23:45.677232+00:00,2024-06-25 12:19:51.339767+00:00
+Opções,Strogonoff de carne,strogonoff-de-carne,,,,False,2024-01-30 12:32:16.686843+00:00,2024-04-10 12:11:36.425896+00:00
+Opções,Strogonoff de frango,strogonoff-de-frango,,,,False,2023-10-18 12:46:38.542613+00:00,2024-07-05 12:10:28.444126+00:00
+Opções,Vatapá,vatapa,,,,False,2024-05-27 12:46:47.927800+00:00,2024-05-28 12:26:22.631720+00:00
+Acompanhamentos,Vinagrete,vinagrete,,,,True,2023-11-08 12:27:50.185602+00:00,2024-08-09 12:32:27.301302+00:00

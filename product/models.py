@@ -34,7 +34,9 @@ class Product(models.Model):
     restaurant = models.ForeignKey(
         Restaurant, 
         on_delete=models.CASCADE, 
-        related_name='produtos'
+        related_name='produtos',
+        null=True,
+        blank=True,
     )
     category = models.ForeignKey(
         Category,
