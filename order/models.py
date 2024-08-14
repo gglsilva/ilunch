@@ -33,7 +33,9 @@ class Order(models.Model):
     )
     created = models.DateField(
         'Criado em',
-        auto_now_add=True
+        # auto_now_add=True
+        null=True,
+        blank=True
     )
     updated = models.DateTimeField(
         'Atualizado em',

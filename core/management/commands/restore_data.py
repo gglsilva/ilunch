@@ -93,17 +93,26 @@ class Command(BaseCommand):
                     continue
 
                 # Cria o pedido
-                order = Order.objects.create(
+                order = Order(
                     client=client,
                     note=row['note'] if row['note'] else '',
                     status=Order.CREATED,
                     created=parse_date(row['created'])
                 )
+                
+                print('order',order)
+                #order = Order.objects.create(
+                #    client=client,
+                #    note=row['note'] if row['note'] else '',
+                #    status=Order.CREATED,
+                #    created=parse_date(row['created'])
+                #)
 
                 # Processa os produtos
                 products = row['products']
                 product_entries = re.findall(r'(\w+\s*\w*)\s*\(x(\d+)\)', products)
-
+                order.save()
+                #items_added = False
                 for product_name, quantity in product_entries:
                     try:
                         product = Product.objects.get(name=product_name.strip())
@@ -118,14 +127,19 @@ class Command(BaseCommand):
                         price=product.price,
                         quantity=int(quantity)
                     )
+                    #items_added = True
 
+                # Salva o pedido apenas se houver itens associados
+                #if items_added:
+                
                 self.stdout.write(self.style.SUCCESS(f"Pedido '{order.id}' criado para o cliente '{client.user.username}'."))
+                #else:
+                #    self.stdout.write(self.style.ERROR(f"Pedido não criado para '{client.user.username}' pois nenhum item foi adicionado."))
 
         
     def handle(self, *args, **options):
         
-        self.restore_profiles()
+        #self.restore_profiles() #ok
+        #self.restore_products() # ok
         
-        # self.restore_orders()
-        # self.restore_products()
         self.restore_orders()
