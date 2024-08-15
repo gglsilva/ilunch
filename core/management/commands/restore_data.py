@@ -139,7 +139,6 @@ class Command(BaseCommand):
         
     def handle(self, *args, **options):
         
-        #self.restore_profiles() #ok
-        #self.restore_products() # ok
-        
+        self.restore_profiles() #ok
+        self.restore_products() # ok
         self.restore_orders()
