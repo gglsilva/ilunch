@@ -9,7 +9,7 @@ from django.db.models import Count, Sum
 from datetime import date, timedelta
 from weasyprint import HTML
 from django.core.files.storage import FileSystemStorage
-
+from django.utils import timezone
 import json
 
 
@@ -47,7 +47,7 @@ def action_fetch_create_order(request):
         if restaurant.max_time_order and current_time > restaurant.max_time_order:
             return JsonResponse({'response': 'error', 'message': 'Os pedidos foram encerrados. Por favor, entre em contato com o restaurante.'}, status=400)
         
-        order = Order.objects.create(client=profile, note=mensagem)
+        order = Order.objects.create(client=profile, note=mensagem, created=timezone.now())
         for item in produtos:
             produto = Product.objects.get(id=int(item))
             OrderItem.objects.create(order=order,
