@@ -100,7 +100,6 @@ class Command(BaseCommand):
                     created=parse_date(row['created'])
                 )
                 
-                print('order',order)
                 #order = Order.objects.create(
                 #    client=client,
                 #    note=row['note'] if row['note'] else '',
