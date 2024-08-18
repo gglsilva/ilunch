@@ -1,7 +1,7 @@
 from django import template
 from order.models import Order
 from restaurant.models import Restaurant
-from datetime import date, timedelta
+from datetime import datetime, date, timedelta
 import re
 
 register = template.Library()
@@ -21,19 +21,24 @@ def total_mean_order(user):
 @register.simple_tag
 def max_time_order():
     max_time = Restaurant.objects.filter(is_active=True).first()
-    return max_time.max_time_order.strftime('%H:%M') if max_time else ""
-    
+    if max_time and max_time.max_time_order:
+        # Converte max_time_order para datetime combinando com uma data qualquer (por exemplo, 1 de janeiro de 1900)
+        datetime_obj = datetime.combine(datetime.min, max_time.max_time_order)
+        # Subtrai 3 horas
+        new_time = (datetime_obj - timedelta(hours=3)).time()
+        return new_time.strftime('%H:%M')
+    return ""
 
 @register.simple_tag
 def contact_restaurant():
-    phone_number = Restaurant.objects.filter(is_active=True).values_list('phone', flat=True).first()
-    if phone_number:
+    if (
+        phone_number := Restaurant.objects.filter(is_active=True)
+        .values_list('phone', flat=True)
+        .first()
+    ):
         # Remove todos os caracteres não numéricos do número de telefone
         digits = re.sub(r'\D', '', phone_number)
         # Formata o número de telefone no formato desejado
-        formatted_phone_number = "({}) {} {}-{}".format(
-            digits[:2], digits[2], digits[3:7], digits[7:]
-        )
+        return f"({digits[:2]}) {digits[2]} {digits[3:7]}-{digits[7:]}"
     else:
-        formatted_phone_number = "N/A"  # ou qualquer outra mensagem que deseje exibir se não houver número de telefone definido
-    return formatted_phone_number
+        return "N/A"

@@ -1,4 +1,5 @@
 import csv
+from datetime import time
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
@@ -10,6 +11,7 @@ import os
 from account.models import Profile
 from product.models import Product, Category
 from order.models import Order, OrderItem
+from restaurant.models import Restaurant
 
 
 class Command(BaseCommand):
@@ -49,6 +51,16 @@ class Command(BaseCommand):
     def restore_products(self):
         # Abra o arquivo CSV
         csv_file_path = os.path.join(settings.BASE_DIR, 'core/management/commands/products.csv')
+        
+        restaurant = Restaurant.objects.all().first() or Restaurant.objects.create(
+                        name="Thiluim",
+                        cnpj="00000000000000",
+                        phone="8698161807",
+                        open_orders=True,
+                        is_active=True,
+                        max_time_order=time(13, 10)
+                    )
+        
         with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
@@ -62,6 +74,7 @@ class Command(BaseCommand):
                 product, created = Product.objects.update_or_create(
                     slug=row['slug'],
                     defaults={
+                        'restaurant': restaurant,
                         'category': category,
                         'name': row['name'],
                         'image': row['image'] if row['image'] else None,
@@ -77,14 +90,75 @@ class Command(BaseCommand):
                 else:
                     self.stdout.write(self.style.SUCCESS(f"Produto '{product.name}' atualizado."))
 
-    def restore_orders(self):
+    # def restore_orders(self):
         
+    #     csv_file_path = os.path.join(settings.BASE_DIR, 'core/management/commands/orders.csv')
+
+    #     # Abra o arquivo CSV
+    #     with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
+    #         reader = csv.DictReader(csvfile)
+    #         for row in reader:
+    #             # Verifica se o cliente existe
+    #             try:
+    #                 client = Profile.objects.get(user__username=row['client_name'])
+    #             except Profile.DoesNotExist:
+    #                 self.stdout.write(self.style.ERROR(f"Cliente '{row['client_name']}' não encontrado."))
+    #                 continue
+
+    #             # Cria o pedido
+    #             order = Order(
+    #                 client=client,
+    #                 note=row['note'] if row['note'] else '',
+    #                 status=Order.CREATED,
+    #                 created=parse_date(row['created'])
+    #             )
+                
+    #             #order = Order.objects.create(
+    #             #    client=client,
+    #             #    note=row['note'] if row['note'] else '',
+    #             #    status=Order.CREATED,
+    #             #    created=parse_date(row['created'])
+    #             #)
+
+    #             # Processa os produtos
+    #             products = row['products']
+    #             product_entries = re.findall(r'(\w+\s*\w*)\s*\(x(\d+)\)', products)
+    #             order.save()
+    #             #items_added = False
+    #             for product_name, quantity in product_entries:
+    #                 try:
+    #                     product = Product.objects.get(name=product_name.strip())
+    #                 except Product.DoesNotExist:
+    #                     self.stdout.write(self.style.ERROR(f"Produto '{product_name}' não encontrado."))
+    #                     continue
+
+    #                 # Cria o item do pedido
+    #                 OrderItem.objects.create(
+    #                     order=order,
+    #                     product=product,
+    #                     price=product.price,
+    #                     quantity=int(quantity)
+    #                 )
+    #                 #items_added = True
+
+    #             # Salva o pedido apenas se houver itens associados
+    #             #if items_added:
+                
+    #             self.stdout.write(self.style.SUCCESS(f"Pedido '{order.id}' criado para o cliente '{client.user.username}'."))
+    #             #else:
+    #             #    self.stdout.write(self.style.ERROR(f"Pedido não criado para '{client.user.username}' pois nenhum item foi adicionado."))
+
+    def restore_orders(self):
         csv_file_path = os.path.join(settings.BASE_DIR, 'core/management/commands/orders.csv')
 
         # Abra o arquivo CSV
         with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
-            for row in reader:
+            # Converte o reader para uma lista para permitir a iteração reversa
+            rows = list(reader)
+            
+            # Itera sobre a lista de trás para frente
+            for row in reversed(rows):
                 # Verifica se o cliente existe
                 try:
                     client = Profile.objects.get(user__username=row['client_name'])
@@ -99,19 +173,12 @@ class Command(BaseCommand):
                     status=Order.CREATED,
                     created=parse_date(row['created'])
                 )
-                
-                #order = Order.objects.create(
-                #    client=client,
-                #    note=row['note'] if row['note'] else '',
-                #    status=Order.CREATED,
-                #    created=parse_date(row['created'])
-                #)
 
                 # Processa os produtos
                 products = row['products']
                 product_entries = re.findall(r'(\w+\s*\w*)\s*\(x(\d+)\)', products)
                 order.save()
-                #items_added = False
+
                 for product_name, quantity in product_entries:
                     try:
                         product = Product.objects.get(name=product_name.strip())
@@ -126,16 +193,10 @@ class Command(BaseCommand):
                         price=product.price,
                         quantity=int(quantity)
                     )
-                    #items_added = True
 
-                # Salva o pedido apenas se houver itens associados
-                #if items_added:
-                
                 self.stdout.write(self.style.SUCCESS(f"Pedido '{order.id}' criado para o cliente '{client.user.username}'."))
-                #else:
-                #    self.stdout.write(self.style.ERROR(f"Pedido não criado para '{client.user.username}' pois nenhum item foi adicionado."))
 
-        
+
     def handle(self, *args, **options):
         
         self.restore_profiles() #ok
