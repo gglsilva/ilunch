@@ -107,6 +107,7 @@
           title="Novo Pedido"
           onclick="handleNewOrder()"
           data-content-url="{% url 'product:product_list' %}"
+          data-restaurant-open="{% restaurant_is_open %}"
         >
           <i class="fa-solid fa-plus"></i>
         </button>
@@ -226,6 +227,12 @@
 function handleNewOrder() {
   const button = document.getElementById("new-order");
   const contentUrl = button.getAttribute("data-content-url");
+  const restaurantIsOpen = button.getAttribute("data-restaurant-open") === "True";
+
+  if (!restaurantIsOpen) {
+    exibirToast('O restaurante ainda não está recebendo pedidos', false);
+    return;
+  }
 
   fetch(contentUrl)
         .then(response => {

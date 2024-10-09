@@ -42,3 +42,8 @@ def contact_restaurant():
         return f"({digits[:2]}) {digits[2]} {digits[3:7]}-{digits[7:]}"
     else:
         return "N/A"
+    
+@register.simple_tag
+def restaurant_is_open():
+    restaurant = Restaurant.objects.filter(is_active=True).first()
+    return restaurant.open_orders
