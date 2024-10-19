@@ -43,6 +43,7 @@
         </div>
     </div>
 </section>
+<span>{{ profile.user }}kkkk</span> 
 <section id="confirm-section">
     <div>
        <h3 class="pri-title">Observação</h3>
@@ -55,7 +56,11 @@
         <label class="fw-bolder fs-5 text-uppercase" for="">Cliente: </label>
         <select name="" id="select-profile">
             {% for profile in profiles %}
-                <option value="{{ profile.user }}">{{ profile }}</option>
+                <option value="{{ profile.user }}"
+                    {% if profile.user == user %}
+                        selected
+                    {% endif %}
+                >{{ profile }}</option>
             {% endfor %}
         </select>
     </div>
