@@ -23,7 +23,7 @@ from account.views import dashboard
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', dashboard, name='dashboard'),
-    # path('core/', include('core.urls')),
+    path('core/', include('core.urls')),
     path('account/', include('account.urls')),
     path('order/', include('order.urls', namespace='order')),
     path('product/', include('product.urls')),
