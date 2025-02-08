@@ -387,6 +387,10 @@ function printOrderDay(button) {
     if (dataToSend.produtos.length === 0) {
       alert("É necessário selecionar pelo menos um produto!" ); 
     } else {
+
+        // Desativar o botão e mudar o texto para indicar o carregamento
+      button.disabled = true;
+      button.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Processando...';
       //  URL do endpoint do backend
       const url = "{% url 'order:action_fetch_create_order' %}";
 
