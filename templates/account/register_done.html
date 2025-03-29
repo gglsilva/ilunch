@@ -12,7 +12,7 @@
     <div class="col-md-12 d-flex">
       <div id="register-done">
         <div class="register_done-title d-flex justify-content-center">
-          <h1 class="justify-content-center fw-bolder">Bem-vindo <span class="gradient">Lucas{{ new_user.first_name }}</span></h1>
+          <h1 class="justify-content-center fw-bolder">Bem-vindo <span class="gradient">{{ new_user.first_name }}</span></h1>
         </div>
         <div class="register_done-content mt-2">
           <p>Sua conta foi criada com sucesso. Agora você pode <a class="gradient fw-bolder" href="{% url "login" %}">Conecte-se</a>.</p>
