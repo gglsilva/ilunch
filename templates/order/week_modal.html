@@ -1,0 +1,66 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="orderPeriodModal"
+  tabindex="-1"
+  aria-labelledby="orderPeriodModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Selecionar Período de Pedidos</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form id="orderPeriodForm">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="startDate" class="form-label">Data Início</label>
+              <input type="date" id="startDate" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+              <label for="endDate" class="form-label">Data Fim</label>
+              <input type="date" id="endDate" class="form-control" required />
+            </div>
+          </div>
+          <br />
+          <button
+            type="button"
+            class="btn btn-primary"
+            onclick="fetchOrdersByPeriod()"
+          >
+            Buscar Pedidos
+          </button>
+        </form>
+        <hr />
+        <h5>Pedidos do Período</h5>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Quantidade de Pedidos</th>
+                </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+                <!-- Os pedidos serão inseridos aqui via JavaScript -->
+            </tbody>
+        </table>
+        
+        <button
+          type="button"
+          hidden
+          class="btn btn-success"
+          onclick="printOrdersPDF()"
+        >
+          Imprimir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

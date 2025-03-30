@@ -80,12 +80,21 @@
           <i id="icon-download" class="far fa-file-pdf"></i>
         </button>
 
+        <!-- Botão para abrir o modal de pedidos feitos-->
         <button
-          type="button"
-          class="btn btn-sec-custom print-order"
-          title="Imprimir Pedidos da semana"
-          onclick="printOrderDay(this)"
-          data-content-url="{% url 'order:print_weekly_report' %}"
+          type="button" 
+          class="btn btn-sec-custom print-order" 
+          title="Pedidos Feitos Hoje" 
+          onclick="fetchOrdersToday()"
+        >
+          <i class="fas fa-check-circle"></i>
+        </button>
+
+        <button 
+          type="button" 
+          class="btn btn-sec-custom print-order" 
+          title="Imprimir Pedidos do Período" 
+          onclick="openOrderModal()"
         >
           <i class="fa-solid fa-calendar-week"></i>
         </button>
@@ -139,6 +148,8 @@
 </div>
 
 {% include 'account/modal.html' %}
+{% include 'order/order_modal.html' %}
+{% include 'order/week_modal.html' %}
 {% include 'toast.html' %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
@@ -310,6 +321,32 @@ function handleEditOrder() {
 
 ///////
 
+
+///////
+// busca os pedidos feitos no dia atual
+function fetchOrdersToday() {
+    $.ajax({
+        url: "{% url 'order:get_orders_today' %}",  // Defina a URL correta no seu urls.py
+        method: "GET",
+        success: function(data) {
+            let tableBody = $("#ordersTableBody");
+            tableBody.empty();
+            data.orders.forEach(function(order) {
+                tableBody.append(`
+                    <tr>
+                        <td>${order.id}</td>
+                        <td>${order.client__user__username}</td>
+                        <td>${order.status}</td>
+                        <td>${order.created}</td>
+                    </tr>
+                `);
+            });
+            $("#ordersModal").modal("show");
+        }
+    });
+}
+///////
+
 /////// Imprimi pedidos do dia atual
 function printOrderDay(button) {
   let contentUrl = button.getAttribute("data-content-url");
@@ -439,5 +476,60 @@ function printOrderDay(button) {
     
   };
 </script>
+
+<script>
+  function openOrderModal() {
+    $("#orderPeriodModal").modal("show");
+  }
+  
+  function fetchOrdersByPeriod() {
+    let startDate = document.getElementById("startDate").value;
+    let endDate = document.getElementById("endDate").value;
+
+    if (!startDate || !endDate) {
+      alert("Por favor, selecione um período válido.");
+      return;
+    }
+
+    fetch(`/order/orders-by-period/?start_date=${startDate}&end_date=${endDate}`)
+        .then(response => response.json())
+        .then(data => {
+
+            let tableBody = document.querySelector("#orderPeriodModal #ordersTableBody");
+            if (!tableBody) {
+                console.error("Elemento 'ordersTableBody' não encontrado no DOM.");
+                return;
+            }
+
+            tableBody.innerHTML = ""; // Limpa os dados antigos
+            
+            // Criar as linhas da tabela com data e quantidade de pedidos
+            data.orders.forEach(order => {
+                let row = `<tr>
+                    <td>${order.created}</td>
+                    <td>${order.count}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        })
+        .catch(error => console.error("Erro ao buscar pedidos:", error));
+  }
+
+
+  
+  function printOrdersPDF() {
+      let startDate = document.getElementById("startDate").value;
+      let endDate = document.getElementById("endDate").value;
+  
+      if (!startDate || !endDate) {
+          alert("Por favor, selecione um período válido.");
+          return;
+      }
+  
+      let printUrl = `/print-orders/?start_date=${startDate}&end_date=${endDate}`;
+      window.open(printUrl, '_blank');
+  }
+</script>
+  
 
 {% endblock %}

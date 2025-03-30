@@ -1,0 +1,35 @@
+<form id="restaurant-update-form">
+    <input type="hidden" id="restaurant-id" value="{{ restaurant.id }}">
+
+    <div class="mb-3">
+        <label class="form-label">Nome</label>
+        <input type="text" class="form-control" id="restaurant-name" value="{{ restaurant.name }}">
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label">CNPJ</label>
+        <input type="text" class="form-control" id="restaurant-cnpj" value="{{ restaurant.cnpj|default:'' }}">
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label">Telefone</label>
+        <input type="text" class="form-control" id="restaurant-phone" value="{{ restaurant.phone|default:'' }}">
+    </div>
+    
+    <div class="mb-3">
+        <label class="form-label">Horário Máximo para Pedidos</label>
+        <input type="time" class="form-control" id="restaurant-time" value="{{ restaurant.max_time_order|default:'' }}">
+    </div>
+    
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="restaurant-open" {% if restaurant.open_orders %}checked{% endif %}>
+        <label class="form-check-label">Aberto para pedidos</label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="restaurant-active" {% if restaurant.is_active %}checked{% endif %}>
+        <label class="form-check-label">Restaurante está ativo</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+</form>

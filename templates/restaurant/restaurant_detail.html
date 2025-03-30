@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurant.name }} - Configurações</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-4">
+    <h1>Configurações de {{ restaurant.name }}</h1>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>CNPJ:</strong> {{ restaurant.cnpj }}</li>
+        <li class="list-group-item"><strong>Telefone:</strong> {{ restaurant.phone }}</li>
+        <li class="list-group-item"><strong>Horário Máximo para Pedidos:</strong> {{ restaurant.max_time_order }}</li>
+        <li class="list-group-item"><strong>Aberto para Pedidos:</strong> {% if restaurant.open_orders %}Sim{% else %}Não{% endif %}</li>
+        <li class="list-group-item"><strong>Restaurante Ativo:</strong> {% if restaurant.is_active %}Sim{% else %}Não{% endif %}</li>
+    </ul>
+    <a href="{% url 'restaurant_list' %}" class="btn btn-primary mt-3">Voltar</a>
+</body>
+</html>
