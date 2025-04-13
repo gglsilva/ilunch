@@ -11,6 +11,10 @@ from weasyprint import HTML
 from django.core.files.storage import FileSystemStorage
 from django.utils import timezone
 import json
+import locale
+
+# Defina o locale para português se quiser o nome dos dias em PT
+locale.setlocale(locale.LC_TIME, "pt_BR.UTF-8")  # pode variar por SO
 
 
 def action_fetch_create_order(request):
@@ -174,11 +178,37 @@ def print_weekly_report(request):
 def get_orders_today(request):
     today = date.today()
     orders = Order.objects.filter(created=today).values(
-        'id', 'client__user__username', 'status', 'created'
+        'id', 'client__user__username', 'created'
     )
     return JsonResponse({'orders': list(orders)})
 
 
+# def get_orders_by_period(request):
+#     start_date = request.GET.get("start_date")
+#     end_date = request.GET.get("end_date")
+
+#     if not start_date or not end_date:
+#         return JsonResponse({"error": "Datas inválidas"}, status=400)
+
+#     start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
+#     end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
+
+#     # Agrupar pedidos pela data e contar quantos existem em cada dia
+#     orders_by_date = (
+#         Order.objects
+#         .filter(created__range=[start_date, end_date])
+#         .values("created")  # Agrupar pela data de criação
+#         .annotate(count=Count("id"))  # Contar os pedidos por data
+#         .order_by("-created")  # Ordenar pela data
+#     )
+
+#     # Formatar a data antes de enviar ao frontend
+#     formatted_orders = [
+#         {"created": order["created"].strftime("%d/%m/%Y"), "count": order["count"]}
+#         for order in orders_by_date
+#     ]
+
+#     return JsonResponse({"orders": formatted_orders})
 def get_orders_by_period(request):
     start_date = request.GET.get("start_date")
     end_date = request.GET.get("end_date")
@@ -189,22 +219,26 @@ def get_orders_by_period(request):
     start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
     end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
 
-    # Agrupar pedidos pela data e contar quantos existem em cada dia
     orders_by_date = (
         Order.objects
         .filter(created__range=[start_date, end_date])
-        .values("created")  # Agrupar pela data de criação
-        .annotate(count=Count("id"))  # Contar os pedidos por data
-        .order_by("-created")  # Ordenar pela data
+        .values("created")  # já é um DateField, então pode agrupar direto
+        .annotate(count=Count("id"))
+        .order_by("-created")
     )
 
-    # Formatar a data antes de enviar ao frontend
     formatted_orders = [
         {"created": order["created"].strftime("%d/%m/%Y"), "count": order["count"]}
         for order in orders_by_date
     ]
 
-    return JsonResponse({"orders": formatted_orders})
+    total_orders = sum(order["count"] for order in formatted_orders)
+
+    return JsonResponse({
+        "orders": formatted_orders,
+        "total": total_orders
+    })
+
 
 def print_orders_pdf(request):
     start_date = request.GET.get("start_date")

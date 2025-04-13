@@ -483,36 +483,43 @@ function printOrderDay(button) {
   }
   
   function fetchOrdersByPeriod() {
-    let startDate = document.getElementById("startDate").value;
-    let endDate = document.getElementById("endDate").value;
+  let startDate = document.getElementById("startDate").value;
+  let endDate = document.getElementById("endDate").value;
 
-    if (!startDate || !endDate) {
-      alert("Por favor, selecione um período válido.");
-      return;
-    }
+  if (!startDate || !endDate) {
+    alert("Por favor, selecione um período válido.");
+    return;
+  }
 
-    fetch(`/order/orders-by-period/?start_date=${startDate}&end_date=${endDate}`)
-        .then(response => response.json())
-        .then(data => {
+  fetch(`/order/orders-by-period/?start_date=${startDate}&end_date=${endDate}`)
+    .then(response => response.json())
+    .then(data => {
+      let tableBody = document.querySelector("#orderPeriodModal #ordersTableBody");
+      if (!tableBody) {
+        console.error("Elemento 'ordersTableBody' não encontrado no DOM.");
+        return;
+      }
 
-            let tableBody = document.querySelector("#orderPeriodModal #ordersTableBody");
-            if (!tableBody) {
-                console.error("Elemento 'ordersTableBody' não encontrado no DOM.");
-                return;
-            }
+      tableBody.innerHTML = ""; // Limpa os dados antigos
 
-            tableBody.innerHTML = ""; // Limpa os dados antigos
-            
-            // Criar as linhas da tabela com data e quantidade de pedidos
-            data.orders.forEach(order => {
-                let row = `<tr>
-                    <td>${order.created}</td>
-                    <td>${order.count}</td>
-                </tr>`;
-                tableBody.innerHTML += row;
-            });
-        })
-        .catch(error => console.error("Erro ao buscar pedidos:", error));
+      // Inserir os pedidos
+      data.orders.forEach(order => {
+        let row = `<tr>
+          <td>${order.created}</td>
+          <td>${order.count}</td>
+        </tr>`;
+        tableBody.innerHTML += row;
+      });
+
+      // Adicionar linha com o total
+      let totalRow = `<tr>
+        <th>Total</th>
+        <th>${data.total}</th>
+      </tr>`;
+      tableBody.innerHTML += totalRow;
+    })
+    .catch(error => console.error("Erro ao buscar pedidos:", error));
+
   }
 
 
